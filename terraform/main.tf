@@ -132,3 +132,22 @@ module "usergroup_rolebindings" {
 
   depends_on = [module.organization, module.project, module.resource_group, module.usergroup]
 }
+
+module "variables" {
+  source = "./modules/variables"
+
+  organization_name = var.entities.organization
+}
+
+module "secrets" {
+  source = "./modules/secrets"
+
+  organization_name = var.entities.organization
+}
+
+module "secrets" {
+  source = "./modules/connectors"
+
+  organization_name = var.entities.organization
+  git_validation_repo = var.git_validation_repo
+}

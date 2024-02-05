@@ -22,7 +22,7 @@ variable "default_tags" {
 
 variable "entities" {
   description = "Organization and project structure"
-  type = object({
+  type        = object({
     organization = string
     projects     = set(string)
   })
@@ -30,7 +30,7 @@ variable "entities" {
 
 variable "roles" {
   description = "Roles to apply to the organization and projects"
-  type = object({
+  type        = object({
     organization = list(string)
     project      = list(string)
   })
@@ -43,5 +43,10 @@ variable "linked_sso_id" {
 
 variable "linked_sso_display_name" {
   description = "The display name of the linked SSO provider"
+  type        = string
+}
+
+variable "git_validation_repo" {
+  description = "Repo to use to validate created git connector"
   type        = string
 }
