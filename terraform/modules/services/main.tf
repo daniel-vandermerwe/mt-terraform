@@ -18,7 +18,7 @@ provider "harness" {
 
 locals {
     service_id = join("_", [for word in split("--", replace(var.service_name, "/[^\\w]/", "--")) : word])
-    rendered_yaml = templatefile("templates/k8s_template.yaml.tpl", { 
+    rendered_yaml = templatefile("templates/${var.service_type}.yaml.tpl", { 
         service_name = var.service_name 
         service_id = local.service_id
         service_type = var.service_type

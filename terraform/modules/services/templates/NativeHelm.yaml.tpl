@@ -1,8 +1,6 @@
 service:
-  name: analytics-relay-worker
-  identifier: analyticsrelayworker
-  orgIdentifier: default
-  projectIdentifier: AMP
+  name: ${service_name}
+  identifier: ${service_id}
   serviceDefinition:
     spec:
       manifests:
@@ -37,4 +35,11 @@ service:
                 registryHostname: us.gcr.io
               identifier: analyticsrelayworkerartifact
               type: Gcr
-    type: NativeHelm
+      variables:
+        - name: var1
+          type: String
+          value: val1
+        - name: var2
+          type: String
+          value: val2
+    type: ${service_type}
