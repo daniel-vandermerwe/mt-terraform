@@ -36,6 +36,3 @@ service:
                 value: val2
         type: ${service_type}
     gitOpsEnabled: false
-
-service.serviceDefinition.spec.manifests[0].manifest.spec.store: null found
-service.serviceDefinition.spec.configFiles[0].configFile.spec.store
