@@ -9,8 +9,8 @@ service:
                 type: K8sManifest
                 spec:
                     store:
-                    type: Github
-                    spec:
+                      type: Github
+                      spec:
                         connectorRef: <+input>
                         gitFetchType: Branch
                         paths:
@@ -36,3 +36,5 @@ service:
                 value: val2
         type: ${service_type}
         gitOpsEnabled: false
+
+service.serviceDefinition.spec.manifests[0].manifest.spec.store: null found,
