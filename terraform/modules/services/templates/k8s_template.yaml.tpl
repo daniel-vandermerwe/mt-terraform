@@ -23,10 +23,10 @@ service:
                 identifier: configFile1
                 spec:
                     store:
-                    type: Harness
-                    spec:
+                      type: Harness
+                      spec:
                         files:
-                        - <+org.description>
+                          - <+org.description>
             variables:
               - name: var1
                 type: String
@@ -35,6 +35,7 @@ service:
                 type: String
                 value: val2
         type: ${service_type}
-        gitOpsEnabled: false
+    gitOpsEnabled: false
 
-service.serviceDefinition.spec.manifests[0].manifest.spec.store: null found,
+service.serviceDefinition.spec.manifests[0].manifest.spec.store: null found
+service.serviceDefinition.spec.configFiles[0].configFile.spec.store
