@@ -1,6 +1,6 @@
 service:
-  name: quotebuilder
-  identifier: quotebuilder_new_harness
+  name: ${service_name}
+  identifier: ${service_id}
   tags: {}
   serviceDefinition:
     spec:
@@ -38,5 +38,5 @@ service:
           type: String
           description: ""
           value: arn:aws:iam::831200582800:role/dev-quotebuilder-fn-role
-    type: AwsLambda
+    type: ${service_type}
   description: Native lambda method
