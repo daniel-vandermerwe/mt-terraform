@@ -27,7 +27,7 @@ locals {
 }
 
 resource "harness_platform_service" "service" {
-    identifier  = var.local.service_id
+    identifier  = local.service_id
     name        = var.service_name
     description = "The '${var.service_name}' deployment configuration"
     org_id      = var.organization_id
