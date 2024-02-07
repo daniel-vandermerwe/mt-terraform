@@ -13,7 +13,7 @@ variable "manifest_repo_name" {
   default = ""
 }
 
-variable "manifest_repo_name" {
+variable "manifest_repo_type" {
   type    = string
   default = ""
 }
