@@ -28,10 +28,10 @@ service:
                         files:
                           - <+org.description>
             variables:
-              %{ for var in var.custom_service_variables ~}
+%{ for var in var.custom_service_variables ~}
               - name: ${var.name}
                 type: ${var.type}
                 value: ${var.value}
-              %{ endfor ~}
+%{ endfor ~}
               type: ${service_type}
     gitOpsEnabled: false

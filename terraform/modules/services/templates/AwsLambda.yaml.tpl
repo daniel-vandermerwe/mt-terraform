@@ -30,13 +30,10 @@ service:
                   repoName: quote-builder
                   branch: main
       variables:
-        - name: functionName
-          type: String
-          description: ""
-          value: <+service.name>
-        - name: roleARN
-          type: String
-          description: ""
-          value: arn:aws:iam::831200582800:role/dev-quotebuilder-fn-role
+%{ for var in custom_service_variables ~}
+        - name: ${var.name}
+          type: ${var.type}
+          value: ${var.value}
+%{ endfor ~}
     type: ${service_type}
   description: Native lambda method
