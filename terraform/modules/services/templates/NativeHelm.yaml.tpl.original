@@ -9,32 +9,32 @@ service:
             type: HelmChart
             spec:
               store:
-                type: ${manitfest_repo_type}
+                type: Bitbucket
                 spec:
-                  connectorRef: ${manifest_connector_ref}
+                  connectorRef: account.Evolutio_Bitbucket
                   gitFetchType: Branch
-                  folderPath: ${folder_path}
-                  repoName: ${mantifest_repo_name}
-                  branch: ${manifest_branch}
+                  folderPath: /charts/apps/analytics-relay-worker
+                  repoName: kube-cluster-config
+                  branch: master
               subChartPath: ""
               valuesPaths:
-                - ${values_path}
+                - charts/apps/analytics-relay-worker/values-<+env.name>.yaml
               skipResourceVersioning: false
               enableDeclarativeRollback: false
               helmVersion: V3
               fetchHelmChartMetadata: false
       artifacts:
         primary:
-          primaryArtifactRef: ${artifact_ref}
+          primaryArtifactRef: <+input>
           sources:
             - spec:
-                connectorRef: ${artifact_connector_ref}
-                imagePath: ${image_path}
+                connectorRef: AMP_GCP
+                imagePath: evolutio-internal/amp/analytics-relay-worker
                 tag: <+input>
                 digest: ""
-                registryHostname: ${registry_hostname}
-              identifier: ${service_name}_artifact
-              type: ${artifact_source_type}
+                registryHostname: us.gcr.io
+              identifier: analyticsrelayworkerartifact
+              type: Gcr
       variables:
         - name: var1
           type: String
