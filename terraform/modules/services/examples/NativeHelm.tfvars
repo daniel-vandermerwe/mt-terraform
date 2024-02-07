@@ -16,3 +16,15 @@ artifact_connector_ref = "AMP_GCP"
 image_path = "evolutio-internal/amp/analytics-relay-worker"
 registry_hostname = "us.gcr.io"
 artifact_source_type = "Gcr"
+custom_service_variables = {
+  "var1" = {
+    name  = "hotel",
+    type  = "String",
+    value = "marriott"
+  },
+  "var2" = {
+    name  = "state",
+    type  = "String",
+    value = "florida"
+  }
+}

@@ -52,3 +52,12 @@ variable "artifact_source_type" {
   type    = string
   default = ""
 }
+
+variable "custom_service_variables" {
+  type = map(object({
+    name  = string
+    type  = string
+    value = string
+  }))
+  default = {}
+}

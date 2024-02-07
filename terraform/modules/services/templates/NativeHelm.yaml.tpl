@@ -36,10 +36,9 @@ service:
               identifier: ${service_name}_artifact
               type: ${artifact_source_type}
       variables:
-        - name: var1
-          type: String
-          value: val1
-        - name: var2
-          type: String
-          value: val2
+        %{ for var in var.custom_service_variables ~}
+        - name: ${var.name}
+          type: ${var.type}
+          value: ${var.value}
+        %{ endfor ~}
     type: ${service_type}

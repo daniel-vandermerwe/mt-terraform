@@ -36,6 +36,7 @@ locals {
         image_path = var.image_path
         registry_hostname = var.registry_hostname
         artifact_source_type = var.artifact_source_type
+        custom_service_variables = var.custom_service_variables
         })
     }
   }

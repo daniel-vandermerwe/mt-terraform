@@ -5,18 +5,18 @@ service:
         spec:
             manifests:
             - manifest:
-                identifier: manifest1
+                identifier: ${service_name}_manifest
                 type: K8sManifest
                 spec:
                     store:
-                      type: Github
+                      type: ${manifest_repo_type}
                       spec:
-                        connectorRef: <+input>
+                        connectorRef: ${manifest_connector_ref}
                         gitFetchType: Branch
                         paths:
                         - files1
-                        repoName: <+input>
-                        branch: master
+                        repoName: ${manifest_repo_name}
+                        branch: ${manifest_branch}
                     skipResourceVersioning: false
             configFiles:
             - configFile:
@@ -28,11 +28,10 @@ service:
                         files:
                           - <+org.description>
             variables:
-              - name: var1
-                type: String
-                value: val1
-              - name: var2
-                type: String
-                value: val2
-        type: ${service_type}
+              %{ for var in var.custom_service_variables ~}
+              - name: ${var.name}
+                type: ${var.type}
+                value: ${var.value}
+              %{ endfor ~}
+              type: ${service_type}
     gitOpsEnabled: false
