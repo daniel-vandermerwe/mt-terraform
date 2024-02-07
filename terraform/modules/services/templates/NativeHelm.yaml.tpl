@@ -38,7 +38,7 @@ service:
       variables:
         %{ for var in custom_service_variables ~}
 - name: ${var.name}
-  type: ${var.type}
+        type: ${var.type}
   value: ${var.value}
         %{ endfor ~}
     type: ${service_type}
