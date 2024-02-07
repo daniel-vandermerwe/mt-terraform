@@ -27,7 +27,7 @@ locals {
         service_type = var.service_type
         manifest_connector_ref = var.manifest_connector_ref
         folder_path = var.folder_path
-        mantifest_repot_type = var.manifest_repo_type
+        mantifest_repo_type = var.manifest_repo_type
         manifest_repo_name = var.manifest_repo_name
         manifest_branch = var.manifest_branch
         values_path = var.values_path
