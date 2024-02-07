@@ -9,12 +9,12 @@ service:
             type: HelmChart
             spec:
               store:
-                type: ${manitfest_repo_type}
+                type: ${manifest_repo_type}
                 spec:
                   connectorRef: ${manifest_connector_ref}
                   gitFetchType: Branch
                   folderPath: ${folder_path}
-                  repoName: ${mantifest_repo_name}
+                  repoName: ${manifest_repo_name}
                   branch: ${manifest_branch}
               subChartPath: ""
               valuesPaths:
