@@ -37,8 +37,8 @@ service:
               type: ${artifact_source_type}
       variables:
         %{ for var in custom_service_variables ~}
-        - name: ${var.name}
-          type: ${var.type}
-          value: ${var.value}
+- name: ${var.name}
+  type: ${var.type}
+  value: ${var.value}
         %{ endfor ~}
     type: ${service_type}
