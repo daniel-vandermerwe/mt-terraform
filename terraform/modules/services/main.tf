@@ -38,6 +38,8 @@ locals {
         artifact_source_type = var.artifact_source_type
         custom_service_variables = var.custom_service_variables
         k8s_config_repo_type = var.k8s_config_repo_type
+        k8s_manifest_file_paths = var.k8s_manifest_file_paths
+        k8s_config_file_paths = var.k8s_config_file_paths
         })
     }
     # "Kubernetes" = {
