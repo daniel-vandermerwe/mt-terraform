@@ -67,5 +67,5 @@ resource "harness_platform_service" "service" {
     description = "The '${var.service_name}' deployment configuration"
     org_id      = var.organization_id
     project_id  = var.project_id
-    yaml = local.configs[var.service_type].rendered_yaml
+    yaml = local.configs.Main.rendered_yaml
 }
