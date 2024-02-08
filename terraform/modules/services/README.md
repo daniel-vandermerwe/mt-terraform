@@ -57,6 +57,16 @@ project_id = "proj_abc"
 
 Templates play a crucial role in this Terraform configuration, enabling the dynamic generation of deployment configurations based on the specified service type. Stored in the `templates/` directory, these templates are selected and rendered according to the `service_type` variable provided.
 
+### Terraform Configuration for YAML Rendering
+
+The Terraform configuration utilizes a `locals` block to dynamically render a YAML file. This is achieved by using the `templatefile` function, which interpolates variables into a template and produces a rendered output. This method is particularly useful for creating configuration files for services or applications that require customization based on environment, deployment parameters, or other conditions.
+
+### How It Works
+
+The `locals` block is a construct in Terraform that allows for the definition of local variables. These variables can be composed of expressions that make use of input variables, other local variables, or any data accessible in the Terraform configuration.
+
+We can pass in MORE variables than what the template requires.  Overflow variables will simply be ignored.  However EVERY variable in the template MUST EXIST in the local configuration. 
+
 ### Template Structure
 
 Each template is named to correspond with the service type it represents. For example, a template for a `NativeHelm` service type would be named `NativeHelm.yaml.tpl`. Terraform's `templatefile` function is utilized within these templates to interpolate variables, thereby generating the final YAML configuration.
