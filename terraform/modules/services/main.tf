@@ -20,7 +20,7 @@ locals {
   service_id = join("_", [for word in split("--", replace(var.service_name, "/[^\\w]/", "--")) : word])
 
   configs = {
-    "NativeHelm" = {
+    "Main" = {
       rendered_yaml = templatefile("templates/${var.service_type}.yaml.tpl", { 
         service_name = var.service_name 
         service_id = local.service_id
@@ -58,7 +58,7 @@ locals {
     #     })
     #}
   }
-  selected_config = local.configs[var.service_type].rendered_yaml
+  selected_config = local.configs["Main"].rendered_yaml
 }
 
 resource "harness_platform_service" "service" {
