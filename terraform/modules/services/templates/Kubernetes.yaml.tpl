@@ -32,10 +32,10 @@ service:
                           - ${path}
 %{ endfor ~}
             variables:
-%{ for var in var.custom_service_variables ~}
-              - name: ${var.name}
-                type: ${var.type}
-                value: ${var.value}
+%{ for variable in var.custom_service_variables ~}
+              - name: ${variable.name}
+                type: ${variable.type}
+                value: ${variable.value}
 %{ endfor ~}
               type: ${service_type}
     gitOpsEnabled: false
