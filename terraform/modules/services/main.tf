@@ -58,7 +58,7 @@ locals {
     #     })
     #}
   }
-  selected_config = local.configs["Main"].rendered_yaml
+  selected_config = local.configs['Main'].rendered_yaml
 }
 
 resource "harness_platform_service" "service" {
