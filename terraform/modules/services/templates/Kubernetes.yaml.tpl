@@ -14,19 +14,23 @@ service:
                         connectorRef: ${manifest_connector_ref}
                         gitFetchType: Branch
                         paths:
-                        - files1
+%{ for var in var.k8s_manifest_file_paths ~}
+                        - ${var}
+%{ endfor ~}
                         repoName: ${manifest_repo_name}
                         branch: ${manifest_branch}
                     skipResourceVersioning: false
             configFiles:
             - configFile:
-                identifier: configFile1
+                identifier: ${service_name}_configfile
                 spec:
                     store:
-                      type: Harness
+                      type: ${k8s_config_repo_type}
                       spec:
                         files:
-                          - <+org.description>
+%{ for var in var.k8s_config_file_paths ~}
+                          - ${var}
+%{ endfor ~}
             variables:
 %{ for var in var.custom_service_variables ~}
               - name: ${var.name}

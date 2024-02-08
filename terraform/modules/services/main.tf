@@ -39,6 +39,21 @@ locals {
         custom_service_variables = var.custom_service_variables
         })
     }
+    "Kubernetes" = {
+      rendered_yaml = templatefile("templates/${var.service_type}.yaml.tpl", { 
+        service_name = var.service_name 
+        service_id = local.service_id
+        service_type = var.service_type
+        manifest_connector_ref = var.manifest_connector_ref
+        manifest_repo_type = var.manifest_repo_type
+        manifest_repo_name = var.manifest_repo_name
+        manifest_branch = var.manifest_branch
+        k8s_repo_type = var.k8s_config_repo_type
+        k8s_manifest_file_paths = var.k8s_manifest_file_paths
+        k8s_config_file_paths = var.k8s_config_file_paths
+        custom_service_variables = var.custom_service_variables
+        })
+    }
   }
   selected_config = local.configs[var.service_type].rendered_yaml
 }

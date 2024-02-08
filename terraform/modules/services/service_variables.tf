@@ -61,3 +61,18 @@ variable "custom_service_variables" {
   }))
   default = {}
 }
+
+variable "k8s_manifest_file_paths" {
+  type    = list(string)
+  default = []
+}
+
+variable "k8s_config_file_paths" {
+  type    = list(string)
+  default = []
+}
+
+variable "k8s_config_repo_type" {
+  type    = string
+  default = ""
+}
