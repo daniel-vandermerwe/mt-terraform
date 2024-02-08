@@ -48,7 +48,7 @@ locals {
         manifest_repo_type = var.manifest_repo_type
         manifest_repo_name = var.manifest_repo_name
         manifest_branch = var.manifest_branch
-        k8s_repo_type = var.k8s_config_repo_type
+        k8s_config_repo_type = var.k8s_config_repo_type
         k8s_manifest_file_paths = var.k8s_manifest_file_paths
         k8s_config_file_paths = var.k8s_config_file_paths
         custom_service_variables = var.custom_service_variables
