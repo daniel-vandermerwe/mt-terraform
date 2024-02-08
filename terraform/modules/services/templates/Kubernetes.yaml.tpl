@@ -14,8 +14,8 @@ service:
                         connectorRef: ${manifest_connector_ref}
                         gitFetchType: Branch
                         paths:
-%{ for var in var.k8s_manifest_file_paths ~}
-                        - ${var}
+%{ for path in var.k8s_manifest_file_paths ~}
+                        - ${path}
 %{ endfor ~}
                         repoName: ${manifest_repo_name}
                         branch: ${manifest_branch}
@@ -28,8 +28,8 @@ service:
                       type: ${k8s_config_repo_type}
                       spec:
                         files:
-%{ for var in var.k8s_config_file_paths ~}
-                          - ${var}
+%{ for path in var.k8s_config_file_paths ~}
+                          - ${path}
 %{ endfor ~}
             variables:
 %{ for var in var.custom_service_variables ~}
