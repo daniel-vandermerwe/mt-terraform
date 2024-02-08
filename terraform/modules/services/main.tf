@@ -20,7 +20,7 @@ locals {
   service_id = join("_", [for word in split("--", replace(var.service_name, "/[^\\w]/", "--")) : word])
 
   configs = {
-    "Main" = {
+    "main" = {
       rendered_yaml = templatefile("templates/${var.service_type}.yaml.tpl", { 
         service_name = var.service_name 
         service_id = local.service_id
@@ -42,23 +42,16 @@ locals {
         k8s_config_file_paths = var.k8s_config_file_paths
         })
     }
-    # "Kubernetes" = {
+    # Below is an example if we wanted to test a different configuation
+
+    # "TestingExample" = {
     #   rendered_yaml = templatefile("templates/${var.service_type}.yaml.tpl", { 
     #     service_name = var.service_name 
     #     service_id = local.service_id
-    #     service_type = var.service_type
-    #     manifest_connector_ref = var.manifest_connector_ref
-    #     manifest_repo_type = var.manifest_repo_type
-    #     manifest_repo_name = var.manifest_repo_name
-    #     manifest_branch = var.manifest_branch
-    #     k8s_config_repo_type = var.k8s_config_repo_type
-    #     k8s_manifest_file_paths = var.k8s_manifest_file_paths
-    #     k8s_config_file_paths = var.k8s_config_file_paths
-    #     custom_service_variables = var.custom_service_variables
+    #     some_new_variable = var.new_variable
     #     })
     #}
   }
-  selected_config = local.configs.Main.rendered_yaml
 }
 
 resource "harness_platform_service" "service" {
@@ -67,5 +60,5 @@ resource "harness_platform_service" "service" {
     description = "The '${var.service_name}' deployment configuration"
     org_id      = var.organization_id
     project_id  = var.project_id
-    yaml = local.configs.Main.rendered_yaml
+    yaml = local.configs.main.rendered_yaml
 }
