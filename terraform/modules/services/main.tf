@@ -54,7 +54,7 @@ locals {
     #     k8s_config_file_paths = var.k8s_config_file_paths
     #     custom_service_variables = var.custom_service_variables
     #     })
-    }
+    #}
   }
   selected_config = local.configs[var.service_type].rendered_yaml
 }
