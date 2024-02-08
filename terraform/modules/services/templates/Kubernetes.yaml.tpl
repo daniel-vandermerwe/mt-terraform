@@ -32,7 +32,7 @@ service:
                           - ${path}
 %{ endfor ~}
             variables:
-%{ for variable in custom_service_variables ~}
+%{ for var in custom_service_variables ~}
               - name: ${var.name}
                 type: ${var.type}
                 value: ${var.value}
