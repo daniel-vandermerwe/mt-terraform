@@ -24,6 +24,14 @@ resource "harness_platform_connector_github" "git_connector" {
   connection_type     = "Account"
   validation_repo     = var.git_validation_repo
   execute_on_delegate = true
+
+  credentials {
+    http {
+      username  = "username"
+      token_ref = "org.git_token"
+    }
+  }
+
   api_authentication {
     github_app {
       installation_id = "org.githubapp_installation_id"
