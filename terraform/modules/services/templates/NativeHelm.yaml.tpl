@@ -5,41 +5,40 @@ service:
     spec:
       manifests:
         - manifest:
-            identifier: workermanifest
+            identifier: ${service_name}_manifest
             type: HelmChart
             spec:
               store:
-                type: Bitbucket
+                type: ${manifest_repo_type}
                 spec:
-                  connectorRef: account.Evolutio_Bitbucket
+                  connectorRef: ${manifest_connector_ref}
                   gitFetchType: Branch
-                  folderPath: /charts/apps/analytics-relay-worker
-                  repoName: kube-cluster-config
-                  branch: master
+                  folderPath: ${folder_path}
+                  repoName: ${manifest_repo_name}
+                  branch: ${manifest_branch}
               subChartPath: ""
               valuesPaths:
-                - charts/apps/analytics-relay-worker/values-<+env.name>.yaml
+                - ${values_path}
               skipResourceVersioning: false
               enableDeclarativeRollback: false
               helmVersion: V3
               fetchHelmChartMetadata: false
       artifacts:
         primary:
-          primaryArtifactRef: <+input>
+          primaryArtifactRef: ${artifact_ref}
           sources:
             - spec:
-                connectorRef: AMP_GCP
-                imagePath: evolutio-internal/amp/analytics-relay-worker
+                connectorRef: ${artifact_connector_ref}
+                imagePath: ${image_path}
                 tag: <+input>
                 digest: ""
-                registryHostname: us.gcr.io
-              identifier: analyticsrelayworkerartifact
-              type: Gcr
+                registryHostname: ${registry_hostname}
+              identifier: ${service_name}_artifact
+              type: ${artifact_source_type}
       variables:
-        - name: var1
-          type: String
-          value: val1
-        - name: var2
-          type: String
-          value: val2
+%{ for var in custom_service_variables ~}
+        - name: ${var.name}
+          type: ${var.type}
+          value: ${var.value}
+%{ endfor ~}
     type: ${service_type}
