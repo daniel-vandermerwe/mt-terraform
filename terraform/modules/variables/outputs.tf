@@ -1,7 +1,7 @@
-output "git_token" {
-  value = harness_platform_secret_text.git_token
+output "git_connector" {
+  value = harness_platform_variables.git_connector_identifier
 }
 
-output "artifactory_token" {
-  value = harness_platform_secret_text.git_token
+output "artifactory_connector" {
+  value = harness_platform_variables.docker_connector_identifier
 }

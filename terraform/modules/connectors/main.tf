@@ -47,27 +47,52 @@ resource "harness_platform_connector_github" "git_connector" {
   }
 }
 
-//TODO add custom secrets manager connector
+resource "harness_platform_connector_helm" "artifactory_helm" {
+  identifier = "artifactory_helm"
+  name       = "Artifactory Helm"
+  url        = "https://artifactory.marriott.com/artifactory/helm"
+  org_id     = data.harness_platform_organization.this.identifier
 
-resource "harness_platform_connector_docker" "artifactory_docker" {
-  identifier = "artifactory"
-  name       = "artifactory"
-  url        = "https://artifactory.marriott.com"
-
-  type = "Other"
+  type = "HttpHelmRepo"
   credentials {
     username_ref = "org.svc_username"
     password_ref = "org.artifactory_token"
   }
 }
 
-resource "harness_platform_connector_artifactory" "artifactory_connector" {
+resource "harness_platform_connector_docker" "artifactory_docker" {
   identifier = "artifactory"
-  name       = "artifactory"
-  url        = "https://artifactory.marriott.com/artifactory"
+  name       = "Artifactory"
+  url        = "https://artifactory.marriott.com"
+  org_id     = data.harness_platform_organization.this.identifier
 
+  type = "DockerRegistry"
   credentials {
     username_ref = "org.svc_username"
     password_ref = "org.artifactory_token"
   }
+}
+
+resource "harness_platform_connector_vault" "mi_crypt_east" {
+  identifier = "micrypteastvaultcloudmarriottcom"
+  name       = "mi-crypt-east"
+  org_id     = data.harness_platform_organization.this.identifier
+  url        = "https://mi-crypt-east.vault.cloud.marriott.com"
+  vault_url                = "https://mi-crypt-east.vault.cloud.marriott.com"
+
+  base_path = "${data.harness_platform_organization.this.identifier}/kv/"
+  secret_engine_name = "${data.harness_platform_organization.this.identifier}/kv"
+  app_role_id = "60220029-c378-c9ae-d315-3e116d917eaa"
+  secret_id = "account.vaultsecretid"
+  secret_engine_version = 2
+  namespace = "mi-${data.harness_platform_organization.this.identifier}"
+  use_vault_agent = false
+  use_aws_iam = false
+  use_k8s_auth = false
+  renew_app_role_token = false
+  read_only = true
+  default = true
+  access_type = "APP_ROLE"
+  renewal_interval_minutes = 10
+
 }

@@ -49,6 +49,19 @@ resource "harness_platform_secret_text" "githubapp_id" {
   value                     = "replace-me"
 }
 
+resource "harness_platform_secret_text" "svc_username" {
+  identifier                = "svc_username"
+  name                      = "svc_username"
+
+  description = "Organization wide service account username"
+  tags        = ["svc_username"]
+  org_id      = data.harness_platform_organization.this.identifier
+
+  secret_manager_identifier = "micrypteastvaultcloudmarriottcom"
+  value_type                = "Reference"
+  value                     = "/devops_tools/harness/${data.harness_platform_organization.this.identifier}#svc_username"
+}
+
 resource "harness_platform_secret_text" "artifactory_token" {
   identifier  = "artifactory_token"
   name        = "artifactory_token"
@@ -56,7 +69,7 @@ resource "harness_platform_secret_text" "artifactory_token" {
   tags        = ["artifactory_token"]
   org_id      = data.harness_platform_organization.this.identifier
 
-  secret_manager_identifier = "vault"
+  secret_manager_identifier = "micrypteastvaultcloudmarriottcom"
   value_type                = "Reference"
   value                     = "/devops_tools/harness/${data.harness_platform_organization.this.identifier}#artifactory_token"
 }
