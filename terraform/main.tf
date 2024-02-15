@@ -137,17 +137,19 @@ module "variables" {
   source = "./modules/variables"
 
   organization_name = var.entities.organization
+  depends_on = [module.organization]
 }
 
 module "secrets" {
   source = "./modules/secrets"
 
   organization_name = var.entities.organization
+  depends_on = [module.organization]
 }
 
-module "secrets" {
+module "connectors" {
   source = "./modules/connectors"
 
   organization_name = var.entities.organization
-  git_validation_repo = var.git_validation_repo
+  depends_on = [module.organization]
 }

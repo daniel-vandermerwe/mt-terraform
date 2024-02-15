@@ -22,7 +22,7 @@ resource "harness_platform_connector_github" "git_connector" {
 
   url                 = "https://git.marriott.com/${data.harness_platform_organization.this.identifier}"
   connection_type     = "Account"
-  validation_repo     = var.git_validation_repo
+  validation_repo     = "replace-me"
   execute_on_delegate = true
 
   credentials {
@@ -71,22 +71,21 @@ resource "harness_platform_connector_vault" "mi_crypt_east" {
   identifier = "micrypteastvaultcloudmarriottcom"
   name       = "mi-crypt-east"
   org_id     = data.harness_platform_organization.this.identifier
-  url        = "https://mi-crypt-east.vault.cloud.marriott.com"
-  vault_url                = "https://mi-crypt-east.vault.cloud.marriott.com"
+  vault_url  = "https://mi-crypt-east.vault.cloud.marriott.com"
 
-  base_path = "${data.harness_platform_organization.this.identifier}/kv/"
-  secret_engine_name = "${data.harness_platform_organization.this.identifier}/kv"
-  app_role_id = "60220029-c378-c9ae-d315-3e116d917eaa"
-  secret_id = "account.vaultsecretid"
-  secret_engine_version = 2
-  namespace = "mi-${data.harness_platform_organization.this.identifier}"
-  use_vault_agent = false
-  use_aws_iam = false
-  use_k8s_auth = false
-  renew_app_role_token = false
-  read_only = true
-  default = true
-  access_type = "APP_ROLE"
+  base_path                = "${data.harness_platform_organization.this.identifier}/kv/"
+  secret_engine_name       = "${data.harness_platform_organization.this.identifier}/kv"
+  app_role_id              = "60220029-c378-c9ae-d315-3e116d917eaa"
+  secret_id                = "account.vaultsecretid"
+  secret_engine_version    = 2
+  namespace                = "mi-${data.harness_platform_organization.this.identifier}"
+  use_vault_agent          = false
+  use_aws_iam              = false
+  use_k8s_auth             = false
+  renew_app_role_token     = false
+  read_only                = true
+  default                  = true
+  access_type              = "APP_ROLE"
   renewal_interval_minutes = 10
 
 }
